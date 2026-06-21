@@ -1,0 +1,22 @@
+{
+  "input": {
+    "config": {
+      "discipline": "geotechnical engineer",
+      "subject": "pile foundation calculation",
+      "language": "English",
+      "figure_label": "Figure",
+      "table_label": "Table",
+      "outline": [
+        {"number": 1, "title": "Introduction"},
+        {"number": 2, "title": "Results"},
+        {"number": 3, "title": "Conclusion"}
+      ]
+    },
+    "chapter": {"number": 3, "title": "Conclusion"},
+    "pointers": [
+      "The calculated settlements remain within the serviceability criterion.",
+      "The governing load case is documented in the results chapter."
+    ],
+    "elements": []
+  }
+}

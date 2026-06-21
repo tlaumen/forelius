@@ -1,0 +1,22 @@
+{
+  "input": {
+    "config": {
+      "discipline": "geotechnical engineer",
+      "subject": "pile foundation calculation",
+      "language": "English",
+      "figure_label": "Figure",
+      "table_label": "Table",
+      "outline": [
+        {"number": 1, "title": "Introduction"},
+        {"number": 2, "title": "Design basis"},
+        {"number": 3, "title": "Conclusion"}
+      ]
+    },
+    "chapter": {"number": 1, "title": "Introduction"},
+    "pointers": [
+      "Explain the purpose of the calculation report.",
+      "Mention that the report covers pile foundation design assumptions."
+    ],
+    "elements": []
+  }
+}

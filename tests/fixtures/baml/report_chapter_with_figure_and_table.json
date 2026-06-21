@@ -1,0 +1,36 @@
+{
+  "input": {
+    "config": {
+      "discipline": "geotechnical engineer",
+      "subject": "pile foundation calculation",
+      "language": "English",
+      "figure_label": "Figure",
+      "table_label": "Table",
+      "outline": [
+        {"number": 1, "title": "Introduction"},
+        {"number": 2, "title": "Results"}
+      ]
+    },
+    "chapter": {"number": 2, "title": "Results"},
+    "pointers": [
+      "Discuss the calculated settlements.",
+      "Describe the governing load case."
+    ],
+    "elements": [
+      {
+        "element_id": "fig_0001",
+        "kind": "figure",
+        "caption": "Calculated settlement profile",
+        "placement_token": "<<FIG:fig_0001>>",
+        "reference_token": "<<REF:fig_0001>>"
+      },
+      {
+        "element_id": "tbl_0001",
+        "kind": "table",
+        "caption": "Governing load combinations",
+        "placement_token": "<<TBL:tbl_0001>>",
+        "reference_token": "<<REF:tbl_0001>>"
+      }
+    ]
+  }
+}

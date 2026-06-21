@@ -1,0 +1,21 @@
+{
+  "input": {
+    "config": {
+      "discipline": "structural engineer",
+      "subject": "temporary works check",
+      "language": "English",
+      "figure_label": "Figure",
+      "table_label": "Table",
+      "outline": [
+        {"number": 1, "title": "Method"},
+        {"number": 2, "title": "Verification"}
+      ]
+    },
+    "chapter": {"number": 2, "title": "Verification"},
+    "pointers": [
+      "State the verification approach.",
+      "Explain that checks are based on the supplied design actions."
+    ],
+    "elements": []
+  }
+}

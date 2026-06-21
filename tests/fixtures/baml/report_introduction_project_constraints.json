@@ -1,0 +1,21 @@
+{
+  "input": {
+    "config": {
+      "discipline": "civil engineer",
+      "subject": "retaining wall assessment",
+      "language": "Dutch",
+      "figure_label": "Figuur",
+      "table_label": "Tabel",
+      "outline": [
+        {"number": 1, "title": "Inleiding"},
+        {"number": 2, "title": "Uitgangspunten"}
+      ]
+    },
+    "chapter": {"number": 1, "title": "Inleiding"},
+    "pointers": [
+      "Beschrijf de aanleiding van de beoordeling.",
+      "Benoem dat resultaten later in het rapport worden behandeld."
+    ],
+    "elements": []
+  }
+}
