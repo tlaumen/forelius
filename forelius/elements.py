@@ -1,7 +1,7 @@
 from enum import Enum
 from pathlib import Path
 
-from pydantic import BaseModel, field_validator, model_validator
+from pydantic import BaseModel, model_validator
 
 
 class ElementKind(str, Enum):
@@ -12,13 +12,13 @@ class ElementKind(str, Enum):
 class Plot(BaseModel):
     caption: str
     path: Path
+    validate_path_exists: bool = True
 
-    @field_validator("path")
-    @classmethod
-    def validate_path_exists(cls, path: Path) -> Path:
-        if not path.exists():
+    @model_validator(mode="after")
+    def validate_path_exists_when_required(self) -> "Plot":
+        if self.validate_path_exists and not self.path.exists():
             raise ValueError("Plot path must exist")
-        return path
+        return self
 
 
 class Table(BaseModel):

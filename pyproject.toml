@@ -10,7 +10,9 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "baml-py>=0.222.0",
+    "prompt-toolkit>=3",
     "pydantic>=2.13.4",
+    "python-dotenv>=1",
 ]
 
 [dependency-groups]

@@ -89,8 +89,11 @@ class ChapterDraft:
     def current(self) -> Section:
         return self._current
 
-    def revise(self, feedback: str) -> Section:
-        revised_spec = self._generator.spec.with_feedback(feedback)
+    def pointers(self) -> list[str]:
+        return list(self._generator.spec.pointers)
+
+    def revise(self, pointers: list[str]) -> Section:
+        revised_spec = self._generator.spec.with_additional_pointers(pointers)
         revised_generator = ChapterGenerator(
             config=self._generator.config,
             chapter=self._generator.chapter,

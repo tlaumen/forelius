@@ -147,6 +147,27 @@ def test_chapter_generator_builds_serializable_dispatch_input(tmp_path) -> None:
     assert captured["input"]["elements"][1]["element_id"] == "tbl_0001"
 
 
+def test_chapter_draft_pointers_reflect_revision_feedback_and_return_copy() -> None:
+    spec = ChapterSpec(
+        role=ChapterRole.BODY,
+        title="Results",
+        pointers=["Discuss settlements"],
+    )
+    generator = next(iter(chapter_generators(make_config(), [spec])))
+
+    with patch.object(ChapterGenerator, "_dispatch", return_value="# Results"):
+        draft = generator.draft()
+        initial_pointers = draft.pointers()
+        initial_pointers.append("Mutated copy")
+        draft.revise(["Mention serviceability", "Summarize governing case"])
+
+    assert draft.pointers() == [
+        "Discuss settlements",
+        "Mention serviceability",
+        "Summarize governing case",
+    ]
+
+
 def test_chapter_draft_revise_regenerates_with_feedback_and_preserves_tokens(tmp_path) -> None:
     plot = make_plot(tmp_path)
     spec = ChapterSpec(
@@ -165,7 +186,7 @@ def test_chapter_draft_revise_regenerates_with_feedback_and_preserves_tokens(tmp
     with patch.object(ChapterGenerator, "_dispatch", fake_dispatch):
         draft = generator.draft()
         current = draft.current()
-        revised = draft.revise("Mention serviceability")
+        revised = draft.revise(["Mention serviceability", "Summarize governing case"])
         accepted = draft.accept()
 
     assert current.chapter == ChapterRef(number=1, title="Results")
@@ -174,6 +195,7 @@ def test_chapter_draft_revise_regenerates_with_feedback_and_preserves_tokens(tmp
     assert seen_inputs[1]["pointers"] == [
         "Discuss settlements",
         "Mention serviceability",
+        "Summarize governing case",
     ]
     assert seen_inputs[0]["elements"][0]["element_id"] == "fig_0001"
     assert seen_inputs[1]["elements"][0]["element_id"] == "fig_0001"

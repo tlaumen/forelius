@@ -13,6 +13,7 @@ from forelius.initialization import (
     ensure_initialized,
     initialize,
 )
+from forelius.interactive import InteractiveReportAborted, prompt_for_report
 from forelius.render import MarkdownRenderer, ReportRenderer
 
 __all__ = [
@@ -23,6 +24,7 @@ __all__ = [
     "ElementKind",
     "ForeliusConfigurationError",
     "GenerationOrder",
+    "InteractiveReportAborted",
     "MarkdownRenderer",
     "Plot",
     "ReportConfig",
@@ -34,4 +36,5 @@ __all__ = [
     "generate_report",
     "initialize",
     "order_sections",
+    "prompt_for_report",
 ]

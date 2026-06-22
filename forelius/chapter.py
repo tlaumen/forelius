@@ -17,5 +17,5 @@ class ChapterSpec(BaseModel):
     pointers: list[str] = Field(default_factory=list)
     elements: list[Plot | Table] = Field(default_factory=list)
 
-    def with_feedback(self, feedback: str) -> "ChapterSpec":
-        return self.model_copy(update={"pointers": [*self.pointers, feedback]})
+    def with_additional_pointers(self, pointers: list[str]) -> "ChapterSpec":
+        return self.model_copy(update={"pointers": [*self.pointers, *pointers]})

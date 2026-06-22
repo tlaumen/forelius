@@ -45,7 +45,7 @@ def test_chapter_spec_uses_flat_pointers_and_elements(tmp_path) -> None:
     assert spec.elements == [plot, table]
 
 
-def test_chapter_spec_with_feedback_appends_pointer_and_preserves_elements(tmp_path) -> None:
+def test_chapter_spec_with_additional_pointers_appends_pointers_and_preserves_elements(tmp_path) -> None:
     image_path = tmp_path / "settlement.png"
     image_path.write_bytes(b"plot")
     plot = Plot(caption="Settlement profile", path=image_path)
@@ -56,12 +56,16 @@ def test_chapter_spec_with_feedback_appends_pointer_and_preserves_elements(tmp_p
         elements=[plot],
     )
 
-    revised = spec.with_feedback("Mention serviceability limit state")
+    revised = spec.with_additional_pointers([
+        "Mention serviceability limit state",
+        "Summarize governing load case",
+    ])
 
     assert revised is not spec
     assert revised.pointers == [
         "Describe calculated settlements",
         "Mention serviceability limit state",
+        "Summarize governing load case",
     ]
     assert revised.elements[0] is plot
     assert spec.pointers == ["Describe calculated settlements"]
@@ -72,11 +76,24 @@ def test_table_rejects_rows_with_different_length_than_headers() -> None:
         Table(caption="Loads", headers=["Case", "Load"], rows=[["A"]])
 
 
-def test_plot_rejects_missing_path(tmp_path) -> None:
+def test_plot_rejects_missing_path_by_default(tmp_path) -> None:
     missing_path = tmp_path / "missing.png"
 
     with pytest.raises(ValidationError, match="Plot path must exist"):
         Plot(caption="Missing plot", path=missing_path)
+
+
+def test_plot_allows_missing_path_when_validation_is_disabled(tmp_path) -> None:
+    missing_path = tmp_path / "draft.png"
+
+    plot = Plot(
+        caption="Draft plot",
+        path=missing_path,
+        validate_path_exists=False,
+    )
+
+    assert plot.path == missing_path
+    assert plot.validate_path_exists is False
 
 
 def test_report_element_model_accepts_required_token_fields() -> None:

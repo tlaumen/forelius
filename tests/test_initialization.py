@@ -1,4 +1,5 @@
 import importlib
+import os
 
 import pytest
 
@@ -31,12 +32,35 @@ def test_initialize_succeeds_when_required_env_vars_are_present(monkeypatch) -> 
     assert initialization.initialize() is None
 
 
-def test_initialize_raises_when_required_env_vars_are_missing(monkeypatch) -> None:
+def test_initialize_raises_when_required_env_vars_are_missing(monkeypatch, tmp_path) -> None:
     initialization = reset_initialization_module()
+    monkeypatch.chdir(tmp_path)
     monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
 
     with pytest.raises(initialization.ForeliusConfigurationError, match="ANTHROPIC_API_KEY"):
         initialization.initialize()
+
+
+def test_initialize_loads_dotenv_when_required_env_var_is_absent(monkeypatch, tmp_path) -> None:
+    initialization = reset_initialization_module()
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    (tmp_path / ".env").write_text("ANTHROPIC_API_KEY=dotenv-key\n")
+
+    initialization.initialize()
+
+    assert os.environ["ANTHROPIC_API_KEY"] == "dotenv-key"
+
+
+def test_initialize_does_not_override_existing_env_var_with_dotenv(monkeypatch, tmp_path) -> None:
+    initialization = reset_initialization_module()
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "existing-key")
+    (tmp_path / ".env").write_text("ANTHROPIC_API_KEY=dotenv-key\n")
+
+    initialization.initialize()
+
+    assert os.environ["ANTHROPIC_API_KEY"] == "existing-key"
 
 
 def test_initialize_accepts_custom_required_environment(monkeypatch) -> None:
