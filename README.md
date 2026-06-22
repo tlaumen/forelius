@@ -12,6 +12,8 @@ Forelius uses BAML with Anthropic Claude Haiku 4.5 for real chapter generation. 
 export ANTHROPIC_API_KEY="..."
 ```
 
+You can also place it in a local `.env` file; `initialize()` loads `.env` from the current working directory.
+
 Normal tests do not make live LLM calls.
 
 ## Short example
@@ -61,6 +63,24 @@ sections = generate_report(
     generation_order=GenerationOrder.INTRODUCTION_LAST,
 )
 markdown = MarkdownRenderer().render(config, sections)
+```
+
+## Interactive example
+
+For an easy guided flow, use the interactive report prompt. It asks for report settings, chapter titles, pointers, optional figures/tables, and lets you review or revise each generated chapter before rendering Markdown.
+
+```python
+from forelius import initialize, prompt_for_report
+
+initialize()
+markdown = prompt_for_report()
+print(markdown)
+```
+
+A manual end-to-end script is included:
+
+```bash
+uv run e2e/manual_prompt_for_report.py
 ```
 
 ## BAML client generation
