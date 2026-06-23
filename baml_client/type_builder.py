@@ -20,19 +20,43 @@ from .globals import DO_NOT_USE_DIRECTLY_UNLESS_YOU_KNOW_WHAT_YOURE_DOING_RUNTIM
 class TypeBuilder(type_builder.TypeBuilder):
     def __init__(self):
         super().__init__(classes=set(
-          ["ChapterInput","ChapterRef","ReportConfig","ReportElement",]
+          ["AxisLimit","ChapterInput","ChapterRef","CreateXYPlotIntentInput","DatasetColumnMetadata","DatasetMetadata","ExtractedColumn","ExtractedDataset","ReportConfig","ReportElement","ReviseXYPlotIntentInput","XYPlotIntent","XYPlotOptions",]
         ), enums=set(
-          []
+          ["ExtractedDataType","ExtractionConfidence","PlotGrid","PlotLineStyle","PlotMarker",]
         ), runtime=DO_NOT_USE_DIRECTLY_UNLESS_YOU_KNOW_WHAT_YOURE_DOING_RUNTIME)
 
     # #########################################################################
-    # Generated enums 0
+    # Generated enums 5
     # #########################################################################
+
+    @property
+    def ExtractedDataType(self) -> "ExtractedDataTypeViewer":
+        return ExtractedDataTypeViewer(self)
+
+    @property
+    def ExtractionConfidence(self) -> "ExtractionConfidenceViewer":
+        return ExtractionConfidenceViewer(self)
+
+    @property
+    def PlotGrid(self) -> "PlotGridViewer":
+        return PlotGridViewer(self)
+
+    @property
+    def PlotLineStyle(self) -> "PlotLineStyleViewer":
+        return PlotLineStyleViewer(self)
+
+    @property
+    def PlotMarker(self) -> "PlotMarkerViewer":
+        return PlotMarkerViewer(self)
 
 
     # #########################################################################
-    # Generated classes 4
+    # Generated classes 13
     # #########################################################################
+
+    @property
+    def AxisLimit(self) -> "AxisLimitViewer":
+        return AxisLimitViewer(self)
 
     @property
     def ChapterInput(self) -> "ChapterInputViewer":
@@ -43,6 +67,26 @@ class TypeBuilder(type_builder.TypeBuilder):
         return ChapterRefViewer(self)
 
     @property
+    def CreateXYPlotIntentInput(self) -> "CreateXYPlotIntentInputViewer":
+        return CreateXYPlotIntentInputViewer(self)
+
+    @property
+    def DatasetColumnMetadata(self) -> "DatasetColumnMetadataViewer":
+        return DatasetColumnMetadataViewer(self)
+
+    @property
+    def DatasetMetadata(self) -> "DatasetMetadataViewer":
+        return DatasetMetadataViewer(self)
+
+    @property
+    def ExtractedColumn(self) -> "ExtractedColumnViewer":
+        return ExtractedColumnViewer(self)
+
+    @property
+    def ExtractedDataset(self) -> "ExtractedDatasetViewer":
+        return ExtractedDatasetViewer(self)
+
+    @property
     def ReportConfig(self) -> "ReportConfigViewer":
         return ReportConfigViewer(self)
 
@@ -50,16 +94,325 @@ class TypeBuilder(type_builder.TypeBuilder):
     def ReportElement(self) -> "ReportElementViewer":
         return ReportElementViewer(self)
 
+    @property
+    def ReviseXYPlotIntentInput(self) -> "ReviseXYPlotIntentInputViewer":
+        return ReviseXYPlotIntentInputViewer(self)
+
+    @property
+    def XYPlotIntent(self) -> "XYPlotIntentViewer":
+        return XYPlotIntentViewer(self)
+
+    @property
+    def XYPlotOptions(self) -> "XYPlotOptionsViewer":
+        return XYPlotOptionsViewer(self)
+
 
 
 # #########################################################################
-# Generated enums 0
+# Generated enums 5
 # #########################################################################
 
+class ExtractedDataTypeAst:
+    def __init__(self, tb: type_builder.TypeBuilder):
+        _tb = tb._tb # type: ignore (we know how to use this private attribute)
+        self._bldr = _tb.enum("ExtractedDataType")
+        self._values: typing.Set[str] = set([  "NUMBER",  "TEXT",  "CATEGORY",  "DATE",  ])
+        self._vals = ExtractedDataTypeValues(self._bldr, self._values)
+
+    def type(self) -> baml_py.FieldType:
+        return self._bldr.field()
+
+    @property
+    def values(self) -> "ExtractedDataTypeValues":
+        return self._vals
+
+
+class ExtractedDataTypeViewer(ExtractedDataTypeAst):
+    def __init__(self, tb: type_builder.TypeBuilder):
+        super().__init__(tb)
+
+    
+    def list_values(self) -> typing.List[typing.Tuple[str, type_builder.EnumValueViewer]]:
+        return [(name, type_builder.EnumValueViewer(self._bldr.value(name))) for name in self._values]
+    
+
+class ExtractedDataTypeValues:
+    def __init__(self, enum_bldr: baml_py.EnumBuilder, values: typing.Set[str]):
+        self.__bldr = enum_bldr
+        self.__values = values # type: ignore (we know how to use this private attribute) # noqa: F821
+
+    
+    
+    @property
+    def NUMBER(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("NUMBER"))
+    
+    @property
+    def TEXT(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("TEXT"))
+    
+    @property
+    def CATEGORY(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("CATEGORY"))
+    
+    @property
+    def DATE(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("DATE"))
+    
+    
+
+
+class ExtractionConfidenceAst:
+    def __init__(self, tb: type_builder.TypeBuilder):
+        _tb = tb._tb # type: ignore (we know how to use this private attribute)
+        self._bldr = _tb.enum("ExtractionConfidence")
+        self._values: typing.Set[str] = set([  "LOW",  "MEDIUM",  "HIGH",  ])
+        self._vals = ExtractionConfidenceValues(self._bldr, self._values)
+
+    def type(self) -> baml_py.FieldType:
+        return self._bldr.field()
+
+    @property
+    def values(self) -> "ExtractionConfidenceValues":
+        return self._vals
+
+
+class ExtractionConfidenceViewer(ExtractionConfidenceAst):
+    def __init__(self, tb: type_builder.TypeBuilder):
+        super().__init__(tb)
+
+    
+    def list_values(self) -> typing.List[typing.Tuple[str, type_builder.EnumValueViewer]]:
+        return [(name, type_builder.EnumValueViewer(self._bldr.value(name))) for name in self._values]
+    
+
+class ExtractionConfidenceValues:
+    def __init__(self, enum_bldr: baml_py.EnumBuilder, values: typing.Set[str]):
+        self.__bldr = enum_bldr
+        self.__values = values # type: ignore (we know how to use this private attribute) # noqa: F821
+
+    
+    
+    @property
+    def LOW(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("LOW"))
+    
+    @property
+    def MEDIUM(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("MEDIUM"))
+    
+    @property
+    def HIGH(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("HIGH"))
+    
+    
+
+
+class PlotGridAst:
+    def __init__(self, tb: type_builder.TypeBuilder):
+        _tb = tb._tb # type: ignore (we know how to use this private attribute)
+        self._bldr = _tb.enum("PlotGrid")
+        self._values: typing.Set[str] = set([  "NONE",  "MAJOR",  "BOTH",  ])
+        self._vals = PlotGridValues(self._bldr, self._values)
+
+    def type(self) -> baml_py.FieldType:
+        return self._bldr.field()
+
+    @property
+    def values(self) -> "PlotGridValues":
+        return self._vals
+
+
+class PlotGridViewer(PlotGridAst):
+    def __init__(self, tb: type_builder.TypeBuilder):
+        super().__init__(tb)
+
+    
+    def list_values(self) -> typing.List[typing.Tuple[str, type_builder.EnumValueViewer]]:
+        return [(name, type_builder.EnumValueViewer(self._bldr.value(name))) for name in self._values]
+    
+
+class PlotGridValues:
+    def __init__(self, enum_bldr: baml_py.EnumBuilder, values: typing.Set[str]):
+        self.__bldr = enum_bldr
+        self.__values = values # type: ignore (we know how to use this private attribute) # noqa: F821
+
+    
+    
+    @property
+    def NONE(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("NONE"))
+    
+    @property
+    def MAJOR(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("MAJOR"))
+    
+    @property
+    def BOTH(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("BOTH"))
+    
+    
+
+
+class PlotLineStyleAst:
+    def __init__(self, tb: type_builder.TypeBuilder):
+        _tb = tb._tb # type: ignore (we know how to use this private attribute)
+        self._bldr = _tb.enum("PlotLineStyle")
+        self._values: typing.Set[str] = set([  "SOLID",  "DASHED",  "DOTTED",  "DASHDOT",  "NONE",  ])
+        self._vals = PlotLineStyleValues(self._bldr, self._values)
+
+    def type(self) -> baml_py.FieldType:
+        return self._bldr.field()
+
+    @property
+    def values(self) -> "PlotLineStyleValues":
+        return self._vals
+
+
+class PlotLineStyleViewer(PlotLineStyleAst):
+    def __init__(self, tb: type_builder.TypeBuilder):
+        super().__init__(tb)
+
+    
+    def list_values(self) -> typing.List[typing.Tuple[str, type_builder.EnumValueViewer]]:
+        return [(name, type_builder.EnumValueViewer(self._bldr.value(name))) for name in self._values]
+    
+
+class PlotLineStyleValues:
+    def __init__(self, enum_bldr: baml_py.EnumBuilder, values: typing.Set[str]):
+        self.__bldr = enum_bldr
+        self.__values = values # type: ignore (we know how to use this private attribute) # noqa: F821
+
+    
+    
+    @property
+    def SOLID(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("SOLID"))
+    
+    @property
+    def DASHED(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("DASHED"))
+    
+    @property
+    def DOTTED(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("DOTTED"))
+    
+    @property
+    def DASHDOT(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("DASHDOT"))
+    
+    @property
+    def NONE(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("NONE"))
+    
+    
+
+
+class PlotMarkerAst:
+    def __init__(self, tb: type_builder.TypeBuilder):
+        _tb = tb._tb # type: ignore (we know how to use this private attribute)
+        self._bldr = _tb.enum("PlotMarker")
+        self._values: typing.Set[str] = set([  "NONE",  "CIRCLE",  "SQUARE",  "TRIANGLE",  "DIAMOND",  "CROSS",  ])
+        self._vals = PlotMarkerValues(self._bldr, self._values)
+
+    def type(self) -> baml_py.FieldType:
+        return self._bldr.field()
+
+    @property
+    def values(self) -> "PlotMarkerValues":
+        return self._vals
+
+
+class PlotMarkerViewer(PlotMarkerAst):
+    def __init__(self, tb: type_builder.TypeBuilder):
+        super().__init__(tb)
+
+    
+    def list_values(self) -> typing.List[typing.Tuple[str, type_builder.EnumValueViewer]]:
+        return [(name, type_builder.EnumValueViewer(self._bldr.value(name))) for name in self._values]
+    
+
+class PlotMarkerValues:
+    def __init__(self, enum_bldr: baml_py.EnumBuilder, values: typing.Set[str]):
+        self.__bldr = enum_bldr
+        self.__values = values # type: ignore (we know how to use this private attribute) # noqa: F821
+
+    
+    
+    @property
+    def NONE(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("NONE"))
+    
+    @property
+    def CIRCLE(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("CIRCLE"))
+    
+    @property
+    def SQUARE(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("SQUARE"))
+    
+    @property
+    def TRIANGLE(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("TRIANGLE"))
+    
+    @property
+    def DIAMOND(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("DIAMOND"))
+    
+    @property
+    def CROSS(self) -> type_builder.EnumValueViewer:
+        return type_builder.EnumValueViewer(self.__bldr.value("CROSS"))
+    
+    
+
+
 
 # #########################################################################
-# Generated classes 4
+# Generated classes 13
 # #########################################################################
+
+class AxisLimitAst:
+    def __init__(self, tb: type_builder.TypeBuilder):
+        _tb = tb._tb # type: ignore (we know how to use this private attribute)
+        self._bldr = _tb.class_("AxisLimit")
+        self._properties: typing.Set[str] = set([  "min",  "max",  ])
+        self._props = AxisLimitProperties(self._bldr, self._properties)
+
+    def type(self) -> baml_py.FieldType:
+        return self._bldr.field()
+
+    @property
+    def props(self) -> "AxisLimitProperties":
+        return self._props
+
+
+class AxisLimitViewer(AxisLimitAst):
+    def __init__(self, tb: type_builder.TypeBuilder):
+        super().__init__(tb)
+
+    
+    def list_properties(self) -> typing.List[typing.Tuple[str, type_builder.ClassPropertyViewer]]:
+        return [(name, type_builder.ClassPropertyViewer(self._bldr.property(name))) for name in self._properties]
+    
+
+
+class AxisLimitProperties:
+    def __init__(self, bldr: baml_py.ClassBuilder, properties: typing.Set[str]):
+        self.__bldr = bldr
+        self.__properties = properties # type: ignore (we know how to use this private attribute) # noqa: F821
+
+    
+    
+    @property
+    def min(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("min"))
+    
+    @property
+    def max(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("max"))
+    
+    
+
 
 class ChapterInputAst:
     def __init__(self, tb: type_builder.TypeBuilder):
@@ -151,6 +504,245 @@ class ChapterRefProperties:
     @property
     def title(self) -> type_builder.ClassPropertyViewer:
         return type_builder.ClassPropertyViewer(self.__bldr.property("title"))
+    
+    
+
+
+class CreateXYPlotIntentInputAst:
+    def __init__(self, tb: type_builder.TypeBuilder):
+        _tb = tb._tb # type: ignore (we know how to use this private attribute)
+        self._bldr = _tb.class_("CreateXYPlotIntentInput")
+        self._properties: typing.Set[str] = set([  "request",  "dataset",  ])
+        self._props = CreateXYPlotIntentInputProperties(self._bldr, self._properties)
+
+    def type(self) -> baml_py.FieldType:
+        return self._bldr.field()
+
+    @property
+    def props(self) -> "CreateXYPlotIntentInputProperties":
+        return self._props
+
+
+class CreateXYPlotIntentInputViewer(CreateXYPlotIntentInputAst):
+    def __init__(self, tb: type_builder.TypeBuilder):
+        super().__init__(tb)
+
+    
+    def list_properties(self) -> typing.List[typing.Tuple[str, type_builder.ClassPropertyViewer]]:
+        return [(name, type_builder.ClassPropertyViewer(self._bldr.property(name))) for name in self._properties]
+    
+
+
+class CreateXYPlotIntentInputProperties:
+    def __init__(self, bldr: baml_py.ClassBuilder, properties: typing.Set[str]):
+        self.__bldr = bldr
+        self.__properties = properties # type: ignore (we know how to use this private attribute) # noqa: F821
+
+    
+    
+    @property
+    def request(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("request"))
+    
+    @property
+    def dataset(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("dataset"))
+    
+    
+
+
+class DatasetColumnMetadataAst:
+    def __init__(self, tb: type_builder.TypeBuilder):
+        _tb = tb._tb # type: ignore (we know how to use this private attribute)
+        self._bldr = _tb.class_("DatasetColumnMetadata")
+        self._properties: typing.Set[str] = set([  "name",  "unit",  "data_type",  ])
+        self._props = DatasetColumnMetadataProperties(self._bldr, self._properties)
+
+    def type(self) -> baml_py.FieldType:
+        return self._bldr.field()
+
+    @property
+    def props(self) -> "DatasetColumnMetadataProperties":
+        return self._props
+
+
+class DatasetColumnMetadataViewer(DatasetColumnMetadataAst):
+    def __init__(self, tb: type_builder.TypeBuilder):
+        super().__init__(tb)
+
+    
+    def list_properties(self) -> typing.List[typing.Tuple[str, type_builder.ClassPropertyViewer]]:
+        return [(name, type_builder.ClassPropertyViewer(self._bldr.property(name))) for name in self._properties]
+    
+
+
+class DatasetColumnMetadataProperties:
+    def __init__(self, bldr: baml_py.ClassBuilder, properties: typing.Set[str]):
+        self.__bldr = bldr
+        self.__properties = properties # type: ignore (we know how to use this private attribute) # noqa: F821
+
+    
+    
+    @property
+    def name(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("name"))
+    
+    @property
+    def unit(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("unit"))
+    
+    @property
+    def data_type(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("data_type"))
+    
+    
+
+
+class DatasetMetadataAst:
+    def __init__(self, tb: type_builder.TypeBuilder):
+        _tb = tb._tb # type: ignore (we know how to use this private attribute)
+        self._bldr = _tb.class_("DatasetMetadata")
+        self._properties: typing.Set[str] = set([  "columns",  "assumptions",  ])
+        self._props = DatasetMetadataProperties(self._bldr, self._properties)
+
+    def type(self) -> baml_py.FieldType:
+        return self._bldr.field()
+
+    @property
+    def props(self) -> "DatasetMetadataProperties":
+        return self._props
+
+
+class DatasetMetadataViewer(DatasetMetadataAst):
+    def __init__(self, tb: type_builder.TypeBuilder):
+        super().__init__(tb)
+
+    
+    def list_properties(self) -> typing.List[typing.Tuple[str, type_builder.ClassPropertyViewer]]:
+        return [(name, type_builder.ClassPropertyViewer(self._bldr.property(name))) for name in self._properties]
+    
+
+
+class DatasetMetadataProperties:
+    def __init__(self, bldr: baml_py.ClassBuilder, properties: typing.Set[str]):
+        self.__bldr = bldr
+        self.__properties = properties # type: ignore (we know how to use this private attribute) # noqa: F821
+
+    
+    
+    @property
+    def columns(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("columns"))
+    
+    @property
+    def assumptions(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("assumptions"))
+    
+    
+
+
+class ExtractedColumnAst:
+    def __init__(self, tb: type_builder.TypeBuilder):
+        _tb = tb._tb # type: ignore (we know how to use this private attribute)
+        self._bldr = _tb.class_("ExtractedColumn")
+        self._properties: typing.Set[str] = set([  "name",  "unit",  "data_type",  "values",  ])
+        self._props = ExtractedColumnProperties(self._bldr, self._properties)
+
+    def type(self) -> baml_py.FieldType:
+        return self._bldr.field()
+
+    @property
+    def props(self) -> "ExtractedColumnProperties":
+        return self._props
+
+
+class ExtractedColumnViewer(ExtractedColumnAst):
+    def __init__(self, tb: type_builder.TypeBuilder):
+        super().__init__(tb)
+
+    
+    def list_properties(self) -> typing.List[typing.Tuple[str, type_builder.ClassPropertyViewer]]:
+        return [(name, type_builder.ClassPropertyViewer(self._bldr.property(name))) for name in self._properties]
+    
+
+
+class ExtractedColumnProperties:
+    def __init__(self, bldr: baml_py.ClassBuilder, properties: typing.Set[str]):
+        self.__bldr = bldr
+        self.__properties = properties # type: ignore (we know how to use this private attribute) # noqa: F821
+
+    
+    
+    @property
+    def name(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("name"))
+    
+    @property
+    def unit(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("unit"))
+    
+    @property
+    def data_type(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("data_type"))
+    
+    @property
+    def values(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("values"))
+    
+    
+
+
+class ExtractedDatasetAst:
+    def __init__(self, tb: type_builder.TypeBuilder):
+        _tb = tb._tb # type: ignore (we know how to use this private attribute)
+        self._bldr = _tb.class_("ExtractedDataset")
+        self._properties: typing.Set[str] = set([  "data_start_line",  "data_end_line",  "columns",  "confidence",  "assumptions",  ])
+        self._props = ExtractedDatasetProperties(self._bldr, self._properties)
+
+    def type(self) -> baml_py.FieldType:
+        return self._bldr.field()
+
+    @property
+    def props(self) -> "ExtractedDatasetProperties":
+        return self._props
+
+
+class ExtractedDatasetViewer(ExtractedDatasetAst):
+    def __init__(self, tb: type_builder.TypeBuilder):
+        super().__init__(tb)
+
+    
+    def list_properties(self) -> typing.List[typing.Tuple[str, type_builder.ClassPropertyViewer]]:
+        return [(name, type_builder.ClassPropertyViewer(self._bldr.property(name))) for name in self._properties]
+    
+
+
+class ExtractedDatasetProperties:
+    def __init__(self, bldr: baml_py.ClassBuilder, properties: typing.Set[str]):
+        self.__bldr = bldr
+        self.__properties = properties # type: ignore (we know how to use this private attribute) # noqa: F821
+
+    
+    
+    @property
+    def data_start_line(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("data_start_line"))
+    
+    @property
+    def data_end_line(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("data_end_line"))
+    
+    @property
+    def columns(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("columns"))
+    
+    @property
+    def confidence(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("confidence"))
+    
+    @property
+    def assumptions(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("assumptions"))
     
     
 
@@ -265,6 +857,183 @@ class ReportElementProperties:
     @property
     def reference_token(self) -> type_builder.ClassPropertyViewer:
         return type_builder.ClassPropertyViewer(self.__bldr.property("reference_token"))
+    
+    
+
+
+class ReviseXYPlotIntentInputAst:
+    def __init__(self, tb: type_builder.TypeBuilder):
+        _tb = tb._tb # type: ignore (we know how to use this private attribute)
+        self._bldr = _tb.class_("ReviseXYPlotIntentInput")
+        self._properties: typing.Set[str] = set([  "current_intent",  "feedback",  "dataset",  ])
+        self._props = ReviseXYPlotIntentInputProperties(self._bldr, self._properties)
+
+    def type(self) -> baml_py.FieldType:
+        return self._bldr.field()
+
+    @property
+    def props(self) -> "ReviseXYPlotIntentInputProperties":
+        return self._props
+
+
+class ReviseXYPlotIntentInputViewer(ReviseXYPlotIntentInputAst):
+    def __init__(self, tb: type_builder.TypeBuilder):
+        super().__init__(tb)
+
+    
+    def list_properties(self) -> typing.List[typing.Tuple[str, type_builder.ClassPropertyViewer]]:
+        return [(name, type_builder.ClassPropertyViewer(self._bldr.property(name))) for name in self._properties]
+    
+
+
+class ReviseXYPlotIntentInputProperties:
+    def __init__(self, bldr: baml_py.ClassBuilder, properties: typing.Set[str]):
+        self.__bldr = bldr
+        self.__properties = properties # type: ignore (we know how to use this private attribute) # noqa: F821
+
+    
+    
+    @property
+    def current_intent(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("current_intent"))
+    
+    @property
+    def feedback(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("feedback"))
+    
+    @property
+    def dataset(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("dataset"))
+    
+    
+
+
+class XYPlotIntentAst:
+    def __init__(self, tb: type_builder.TypeBuilder):
+        _tb = tb._tb # type: ignore (we know how to use this private attribute)
+        self._bldr = _tb.class_("XYPlotIntent")
+        self._properties: typing.Set[str] = set([  "x",  "y",  "caption",  "options",  ])
+        self._props = XYPlotIntentProperties(self._bldr, self._properties)
+
+    def type(self) -> baml_py.FieldType:
+        return self._bldr.field()
+
+    @property
+    def props(self) -> "XYPlotIntentProperties":
+        return self._props
+
+
+class XYPlotIntentViewer(XYPlotIntentAst):
+    def __init__(self, tb: type_builder.TypeBuilder):
+        super().__init__(tb)
+
+    
+    def list_properties(self) -> typing.List[typing.Tuple[str, type_builder.ClassPropertyViewer]]:
+        return [(name, type_builder.ClassPropertyViewer(self._bldr.property(name))) for name in self._properties]
+    
+
+
+class XYPlotIntentProperties:
+    def __init__(self, bldr: baml_py.ClassBuilder, properties: typing.Set[str]):
+        self.__bldr = bldr
+        self.__properties = properties # type: ignore (we know how to use this private attribute) # noqa: F821
+
+    
+    
+    @property
+    def x(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("x"))
+    
+    @property
+    def y(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("y"))
+    
+    @property
+    def caption(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("caption"))
+    
+    @property
+    def options(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("options"))
+    
+    
+
+
+class XYPlotOptionsAst:
+    def __init__(self, tb: type_builder.TypeBuilder):
+        _tb = tb._tb # type: ignore (we know how to use this private attribute)
+        self._bldr = _tb.class_("XYPlotOptions")
+        self._properties: typing.Set[str] = set([  "title",  "x_label",  "y_label",  "x_lim",  "y_lim",  "grid",  "line_style",  "marker",  "color",  "invert_x",  "invert_y",  ])
+        self._props = XYPlotOptionsProperties(self._bldr, self._properties)
+
+    def type(self) -> baml_py.FieldType:
+        return self._bldr.field()
+
+    @property
+    def props(self) -> "XYPlotOptionsProperties":
+        return self._props
+
+
+class XYPlotOptionsViewer(XYPlotOptionsAst):
+    def __init__(self, tb: type_builder.TypeBuilder):
+        super().__init__(tb)
+
+    
+    def list_properties(self) -> typing.List[typing.Tuple[str, type_builder.ClassPropertyViewer]]:
+        return [(name, type_builder.ClassPropertyViewer(self._bldr.property(name))) for name in self._properties]
+    
+
+
+class XYPlotOptionsProperties:
+    def __init__(self, bldr: baml_py.ClassBuilder, properties: typing.Set[str]):
+        self.__bldr = bldr
+        self.__properties = properties # type: ignore (we know how to use this private attribute) # noqa: F821
+
+    
+    
+    @property
+    def title(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("title"))
+    
+    @property
+    def x_label(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("x_label"))
+    
+    @property
+    def y_label(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("y_label"))
+    
+    @property
+    def x_lim(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("x_lim"))
+    
+    @property
+    def y_lim(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("y_lim"))
+    
+    @property
+    def grid(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("grid"))
+    
+    @property
+    def line_style(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("line_style"))
+    
+    @property
+    def marker(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("marker"))
+    
+    @property
+    def color(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("color"))
+    
+    @property
+    def invert_x(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("invert_x"))
+    
+    @property
+    def invert_y(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("invert_y"))
     
     
 

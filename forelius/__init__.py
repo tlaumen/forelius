@@ -14,6 +14,7 @@ from forelius.initialization import (
     initialize,
 )
 from forelius.interactive import InteractiveReportAborted, prompt_for_report
+from forelius.plotting import generate_plot_from_freeform
 from forelius.render import MarkdownRenderer, ReportRenderer
 
 __all__ = [
@@ -33,6 +34,7 @@ __all__ = [
     "Table",
     "chapter_generators",
     "ensure_initialized",
+    "generate_plot_from_freeform",
     "generate_report",
     "initialize",
     "order_sections",

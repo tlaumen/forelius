@@ -37,12 +37,47 @@ def get_checks(checks: typing.Dict[CheckName, Check]) -> typing.List[Check]:
 def all_succeeded(checks: typing.Dict[CheckName, Check]) -> bool:
     return all(check.status == "succeeded" for check in get_checks(checks))
 # #########################################################################
-# Generated enums (0)
+# Generated enums (5)
 # #########################################################################
 
+class ExtractedDataType(str, Enum):
+    NUMBER = "NUMBER"
+    TEXT = "TEXT"
+    CATEGORY = "CATEGORY"
+    DATE = "DATE"
+
+class ExtractionConfidence(str, Enum):
+    LOW = "LOW"
+    MEDIUM = "MEDIUM"
+    HIGH = "HIGH"
+
+class PlotGrid(str, Enum):
+    NONE = "NONE"
+    MAJOR = "MAJOR"
+    BOTH = "BOTH"
+
+class PlotLineStyle(str, Enum):
+    SOLID = "SOLID"
+    DASHED = "DASHED"
+    DOTTED = "DOTTED"
+    DASHDOT = "DASHDOT"
+    NONE = "NONE"
+
+class PlotMarker(str, Enum):
+    NONE = "NONE"
+    CIRCLE = "CIRCLE"
+    SQUARE = "SQUARE"
+    TRIANGLE = "TRIANGLE"
+    DIAMOND = "DIAMOND"
+    CROSS = "CROSS"
+
 # #########################################################################
-# Generated classes (4)
+# Generated classes (13)
 # #########################################################################
+
+class AxisLimit(BaseModel):
+    min: typing.Optional[float] = None
+    max: typing.Optional[float] = None
 
 class ChapterInput(BaseModel):
     config: "ReportConfig"
@@ -53,6 +88,32 @@ class ChapterInput(BaseModel):
 class ChapterRef(BaseModel):
     number: int
     title: str
+
+class CreateXYPlotIntentInput(BaseModel):
+    request: str
+    dataset: "DatasetMetadata"
+
+class DatasetColumnMetadata(BaseModel):
+    name: str
+    unit: typing.Optional[str] = None
+    data_type: ExtractedDataType
+
+class DatasetMetadata(BaseModel):
+    columns: typing.List["DatasetColumnMetadata"]
+    assumptions: typing.List[str]
+
+class ExtractedColumn(BaseModel):
+    name: str
+    unit: typing.Optional[str] = None
+    data_type: ExtractedDataType
+    values: typing.List[str]
+
+class ExtractedDataset(BaseModel):
+    data_start_line: int
+    data_end_line: int
+    columns: typing.List["ExtractedColumn"]
+    confidence: ExtractionConfidence
+    assumptions: typing.List[str]
 
 class ReportConfig(BaseModel):
     discipline: str
@@ -68,6 +129,30 @@ class ReportElement(BaseModel):
     caption: str
     placement_token: str
     reference_token: str
+
+class ReviseXYPlotIntentInput(BaseModel):
+    current_intent: "XYPlotIntent"
+    feedback: str
+    dataset: "DatasetMetadata"
+
+class XYPlotIntent(BaseModel):
+    x: str
+    y: str
+    caption: str
+    options: "XYPlotOptions"
+
+class XYPlotOptions(BaseModel):
+    title: typing.Optional[str] = None
+    x_label: typing.Optional[str] = None
+    y_label: typing.Optional[str] = None
+    x_lim: typing.Optional["AxisLimit"] = None
+    y_lim: typing.Optional["AxisLimit"] = None
+    grid: PlotGrid
+    line_style: PlotLineStyle
+    marker: PlotMarker
+    color: typing.Optional[str] = None
+    invert_x: bool
+    invert_y: bool
 
 # #########################################################################
 # Generated type aliases (0)

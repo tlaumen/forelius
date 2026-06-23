@@ -94,6 +94,34 @@ class BamlSyncClient:
     def parse_stream(self):
       return self.__llm_stream_parser
 
+    def CreateXYPlotIntent(self, input: types.CreateXYPlotIntentInput,
+        baml_options: BamlCallOptions = {},
+    ) -> types.XYPlotIntent:
+        # Check if on_tick is provided
+        if 'on_tick' in baml_options:
+            __stream__ = self.stream.CreateXYPlotIntent(input=input,
+                baml_options=baml_options)
+            return __stream__.get_final_response()
+        else:
+            # Original non-streaming code
+            __result__ = self.__options.merge_options(baml_options).call_function_sync(function_name="CreateXYPlotIntent", args={
+                "input": input,
+            })
+            return typing.cast(types.XYPlotIntent, __result__.cast_to(types, types, stream_types, False, __runtime__))
+    def ExtractDatasetFromFreeform(self, numbered_input: str,
+        baml_options: BamlCallOptions = {},
+    ) -> types.ExtractedDataset:
+        # Check if on_tick is provided
+        if 'on_tick' in baml_options:
+            __stream__ = self.stream.ExtractDatasetFromFreeform(numbered_input=numbered_input,
+                baml_options=baml_options)
+            return __stream__.get_final_response()
+        else:
+            # Original non-streaming code
+            __result__ = self.__options.merge_options(baml_options).call_function_sync(function_name="ExtractDatasetFromFreeform", args={
+                "numbered_input": numbered_input,
+            })
+            return typing.cast(types.ExtractedDataset, __result__.cast_to(types, types, stream_types, False, __runtime__))
     def ReportChapter(self, input: types.ChapterInput,
         baml_options: BamlCallOptions = {},
     ) -> str:
@@ -136,6 +164,20 @@ class BamlSyncClient:
                 "input": input,
             })
             return typing.cast(str, __result__.cast_to(types, types, stream_types, False, __runtime__))
+    def ReviseXYPlotIntent(self, input: types.ReviseXYPlotIntentInput,
+        baml_options: BamlCallOptions = {},
+    ) -> types.XYPlotIntent:
+        # Check if on_tick is provided
+        if 'on_tick' in baml_options:
+            __stream__ = self.stream.ReviseXYPlotIntent(input=input,
+                baml_options=baml_options)
+            return __stream__.get_final_response()
+        else:
+            # Original non-streaming code
+            __result__ = self.__options.merge_options(baml_options).call_function_sync(function_name="ReviseXYPlotIntent", args={
+                "input": input,
+            })
+            return typing.cast(types.XYPlotIntent, __result__.cast_to(types, types, stream_types, False, __runtime__))
     
 
 
@@ -145,6 +187,30 @@ class BamlStreamClient:
     def __init__(self, options: DoNotUseDirectlyCallManager):
         self.__options = options
 
+    def CreateXYPlotIntent(self, input: types.CreateXYPlotIntentInput,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.BamlSyncStream[stream_types.XYPlotIntent, types.XYPlotIntent]:
+        __ctx__, __result__ = self.__options.merge_options(baml_options).create_sync_stream(function_name="CreateXYPlotIntent", args={
+            "input": input,
+        })
+        return baml_py.BamlSyncStream[stream_types.XYPlotIntent, types.XYPlotIntent](
+          __result__,
+          lambda x: typing.cast(stream_types.XYPlotIntent, x.cast_to(types, types, stream_types, True, __runtime__)),
+          lambda x: typing.cast(types.XYPlotIntent, x.cast_to(types, types, stream_types, False, __runtime__)),
+          __ctx__,
+        )
+    def ExtractDatasetFromFreeform(self, numbered_input: str,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.BamlSyncStream[stream_types.ExtractedDataset, types.ExtractedDataset]:
+        __ctx__, __result__ = self.__options.merge_options(baml_options).create_sync_stream(function_name="ExtractDatasetFromFreeform", args={
+            "numbered_input": numbered_input,
+        })
+        return baml_py.BamlSyncStream[stream_types.ExtractedDataset, types.ExtractedDataset](
+          __result__,
+          lambda x: typing.cast(stream_types.ExtractedDataset, x.cast_to(types, types, stream_types, True, __runtime__)),
+          lambda x: typing.cast(types.ExtractedDataset, x.cast_to(types, types, stream_types, False, __runtime__)),
+          __ctx__,
+        )
     def ReportChapter(self, input: types.ChapterInput,
         baml_options: BamlCallOptions = {},
     ) -> baml_py.BamlSyncStream[str, str]:
@@ -181,6 +247,18 @@ class BamlStreamClient:
           lambda x: typing.cast(str, x.cast_to(types, types, stream_types, False, __runtime__)),
           __ctx__,
         )
+    def ReviseXYPlotIntent(self, input: types.ReviseXYPlotIntentInput,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.BamlSyncStream[stream_types.XYPlotIntent, types.XYPlotIntent]:
+        __ctx__, __result__ = self.__options.merge_options(baml_options).create_sync_stream(function_name="ReviseXYPlotIntent", args={
+            "input": input,
+        })
+        return baml_py.BamlSyncStream[stream_types.XYPlotIntent, types.XYPlotIntent](
+          __result__,
+          lambda x: typing.cast(stream_types.XYPlotIntent, x.cast_to(types, types, stream_types, True, __runtime__)),
+          lambda x: typing.cast(types.XYPlotIntent, x.cast_to(types, types, stream_types, False, __runtime__)),
+          __ctx__,
+        )
     
 
 class BamlHttpRequestClient:
@@ -189,6 +267,20 @@ class BamlHttpRequestClient:
     def __init__(self, options: DoNotUseDirectlyCallManager):
         self.__options = options
 
+    def CreateXYPlotIntent(self, input: types.CreateXYPlotIntentInput,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.baml_py.HTTPRequest:
+        __result__ = self.__options.merge_options(baml_options).create_http_request_sync(function_name="CreateXYPlotIntent", args={
+            "input": input,
+        }, mode="request")
+        return __result__
+    def ExtractDatasetFromFreeform(self, numbered_input: str,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.baml_py.HTTPRequest:
+        __result__ = self.__options.merge_options(baml_options).create_http_request_sync(function_name="ExtractDatasetFromFreeform", args={
+            "numbered_input": numbered_input,
+        }, mode="request")
+        return __result__
     def ReportChapter(self, input: types.ChapterInput,
         baml_options: BamlCallOptions = {},
     ) -> baml_py.baml_py.HTTPRequest:
@@ -207,6 +299,13 @@ class BamlHttpRequestClient:
         baml_options: BamlCallOptions = {},
     ) -> baml_py.baml_py.HTTPRequest:
         __result__ = self.__options.merge_options(baml_options).create_http_request_sync(function_name="ReportIntroduction", args={
+            "input": input,
+        }, mode="request")
+        return __result__
+    def ReviseXYPlotIntent(self, input: types.ReviseXYPlotIntentInput,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.baml_py.HTTPRequest:
+        __result__ = self.__options.merge_options(baml_options).create_http_request_sync(function_name="ReviseXYPlotIntent", args={
             "input": input,
         }, mode="request")
         return __result__
@@ -218,6 +317,20 @@ class BamlHttpStreamRequestClient:
     def __init__(self, options: DoNotUseDirectlyCallManager):
         self.__options = options
 
+    def CreateXYPlotIntent(self, input: types.CreateXYPlotIntentInput,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.baml_py.HTTPRequest:
+        __result__ = self.__options.merge_options(baml_options).create_http_request_sync(function_name="CreateXYPlotIntent", args={
+            "input": input,
+        }, mode="stream")
+        return __result__
+    def ExtractDatasetFromFreeform(self, numbered_input: str,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.baml_py.HTTPRequest:
+        __result__ = self.__options.merge_options(baml_options).create_http_request_sync(function_name="ExtractDatasetFromFreeform", args={
+            "numbered_input": numbered_input,
+        }, mode="stream")
+        return __result__
     def ReportChapter(self, input: types.ChapterInput,
         baml_options: BamlCallOptions = {},
     ) -> baml_py.baml_py.HTTPRequest:
@@ -236,6 +349,13 @@ class BamlHttpStreamRequestClient:
         baml_options: BamlCallOptions = {},
     ) -> baml_py.baml_py.HTTPRequest:
         __result__ = self.__options.merge_options(baml_options).create_http_request_sync(function_name="ReportIntroduction", args={
+            "input": input,
+        }, mode="stream")
+        return __result__
+    def ReviseXYPlotIntent(self, input: types.ReviseXYPlotIntentInput,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.baml_py.HTTPRequest:
+        __result__ = self.__options.merge_options(baml_options).create_http_request_sync(function_name="ReviseXYPlotIntent", args={
             "input": input,
         }, mode="stream")
         return __result__

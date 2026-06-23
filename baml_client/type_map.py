@@ -16,11 +16,29 @@ from . import stream_types
 
 type_map = {
 
+    "types.AxisLimit": types.AxisLimit,
+    "stream_types.AxisLimit": stream_types.AxisLimit,
+
     "types.ChapterInput": types.ChapterInput,
     "stream_types.ChapterInput": stream_types.ChapterInput,
 
     "types.ChapterRef": types.ChapterRef,
     "stream_types.ChapterRef": stream_types.ChapterRef,
+
+    "types.CreateXYPlotIntentInput": types.CreateXYPlotIntentInput,
+    "stream_types.CreateXYPlotIntentInput": stream_types.CreateXYPlotIntentInput,
+
+    "types.DatasetColumnMetadata": types.DatasetColumnMetadata,
+    "stream_types.DatasetColumnMetadata": stream_types.DatasetColumnMetadata,
+
+    "types.DatasetMetadata": types.DatasetMetadata,
+    "stream_types.DatasetMetadata": stream_types.DatasetMetadata,
+
+    "types.ExtractedColumn": types.ExtractedColumn,
+    "stream_types.ExtractedColumn": stream_types.ExtractedColumn,
+
+    "types.ExtractedDataset": types.ExtractedDataset,
+    "stream_types.ExtractedDataset": stream_types.ExtractedDataset,
 
     "types.ReportConfig": types.ReportConfig,
     "stream_types.ReportConfig": stream_types.ReportConfig,
@@ -28,5 +46,24 @@ type_map = {
     "types.ReportElement": types.ReportElement,
     "stream_types.ReportElement": stream_types.ReportElement,
 
+    "types.ReviseXYPlotIntentInput": types.ReviseXYPlotIntentInput,
+    "stream_types.ReviseXYPlotIntentInput": stream_types.ReviseXYPlotIntentInput,
+
+    "types.XYPlotIntent": types.XYPlotIntent,
+    "stream_types.XYPlotIntent": stream_types.XYPlotIntent,
+
+    "types.XYPlotOptions": types.XYPlotOptions,
+    "stream_types.XYPlotOptions": stream_types.XYPlotOptions,
+
+
+    "types.ExtractedDataType": types.ExtractedDataType,
+
+    "types.ExtractionConfidence": types.ExtractionConfidence,
+
+    "types.PlotGrid": types.PlotGrid,
+
+    "types.PlotLineStyle": types.PlotLineStyle,
+
+    "types.PlotMarker": types.PlotMarker,
 
 }

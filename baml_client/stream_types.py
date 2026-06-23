@@ -23,8 +23,12 @@ class StreamState(BaseModel, typing.Generic[StreamStateValueT]):
     value: StreamStateValueT
     state: typing_extensions.Literal["Pending", "Incomplete", "Complete"]
 # #########################################################################
-# Generated classes (4)
+# Generated classes (13)
 # #########################################################################
+
+class AxisLimit(BaseModel):
+    min: typing.Optional[float] = None
+    max: typing.Optional[float] = None
 
 class ChapterInput(BaseModel):
     config: typing.Optional["ReportConfig"] = None
@@ -35,6 +39,32 @@ class ChapterInput(BaseModel):
 class ChapterRef(BaseModel):
     number: typing.Optional[int] = None
     title: typing.Optional[str] = None
+
+class CreateXYPlotIntentInput(BaseModel):
+    request: typing.Optional[str] = None
+    dataset: typing.Optional["DatasetMetadata"] = None
+
+class DatasetColumnMetadata(BaseModel):
+    name: typing.Optional[str] = None
+    unit: typing.Optional[str] = None
+    data_type: typing.Optional[types.ExtractedDataType] = None
+
+class DatasetMetadata(BaseModel):
+    columns: typing.List["DatasetColumnMetadata"]
+    assumptions: typing.List[str]
+
+class ExtractedColumn(BaseModel):
+    name: typing.Optional[str] = None
+    unit: typing.Optional[str] = None
+    data_type: typing.Optional[types.ExtractedDataType] = None
+    values: typing.List[str]
+
+class ExtractedDataset(BaseModel):
+    data_start_line: typing.Optional[int] = None
+    data_end_line: typing.Optional[int] = None
+    columns: typing.List["ExtractedColumn"]
+    confidence: typing.Optional[types.ExtractionConfidence] = None
+    assumptions: typing.List[str]
 
 class ReportConfig(BaseModel):
     discipline: typing.Optional[str] = None
@@ -50,6 +80,30 @@ class ReportElement(BaseModel):
     caption: typing.Optional[str] = None
     placement_token: typing.Optional[str] = None
     reference_token: typing.Optional[str] = None
+
+class ReviseXYPlotIntentInput(BaseModel):
+    current_intent: typing.Optional["XYPlotIntent"] = None
+    feedback: typing.Optional[str] = None
+    dataset: typing.Optional["DatasetMetadata"] = None
+
+class XYPlotIntent(BaseModel):
+    x: typing.Optional[str] = None
+    y: typing.Optional[str] = None
+    caption: typing.Optional[str] = None
+    options: typing.Optional["XYPlotOptions"] = None
+
+class XYPlotOptions(BaseModel):
+    title: typing.Optional[str] = None
+    x_label: typing.Optional[str] = None
+    y_label: typing.Optional[str] = None
+    x_lim: typing.Optional["AxisLimit"] = None
+    y_lim: typing.Optional["AxisLimit"] = None
+    grid: typing.Optional[types.PlotGrid] = None
+    line_style: typing.Optional[types.PlotLineStyle] = None
+    marker: typing.Optional[types.PlotMarker] = None
+    color: typing.Optional[str] = None
+    invert_x: typing.Optional[bool] = None
+    invert_y: typing.Optional[bool] = None
 
 # #########################################################################
 # Generated type aliases (0)

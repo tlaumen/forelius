@@ -10,3 +10,4 @@ def test_package_root_exports_implemented_public_api() -> None:
     assert forelius.ChapterSpec is not None
     assert forelius.Plot is not None
     assert forelius.Table is not None
+    assert forelius.generate_plot_from_freeform is not None

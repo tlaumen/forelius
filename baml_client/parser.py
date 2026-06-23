@@ -23,6 +23,18 @@ class LlmResponseParser:
     def __init__(self, options: DoNotUseDirectlyCallManager):
         self.__options = options
 
+    def CreateXYPlotIntent(
+        self, llm_response: str, baml_options: BamlCallOptions = {},
+    ) -> types.XYPlotIntent:
+        __result__ = self.__options.merge_options(baml_options).parse_response(function_name="CreateXYPlotIntent", llm_response=llm_response, mode="request")
+        return typing.cast(types.XYPlotIntent, __result__)
+
+    def ExtractDatasetFromFreeform(
+        self, llm_response: str, baml_options: BamlCallOptions = {},
+    ) -> types.ExtractedDataset:
+        __result__ = self.__options.merge_options(baml_options).parse_response(function_name="ExtractDatasetFromFreeform", llm_response=llm_response, mode="request")
+        return typing.cast(types.ExtractedDataset, __result__)
+
     def ReportChapter(
         self, llm_response: str, baml_options: BamlCallOptions = {},
     ) -> str:
@@ -41,6 +53,12 @@ class LlmResponseParser:
         __result__ = self.__options.merge_options(baml_options).parse_response(function_name="ReportIntroduction", llm_response=llm_response, mode="request")
         return typing.cast(str, __result__)
 
+    def ReviseXYPlotIntent(
+        self, llm_response: str, baml_options: BamlCallOptions = {},
+    ) -> types.XYPlotIntent:
+        __result__ = self.__options.merge_options(baml_options).parse_response(function_name="ReviseXYPlotIntent", llm_response=llm_response, mode="request")
+        return typing.cast(types.XYPlotIntent, __result__)
+
     
 
 class LlmStreamParser:
@@ -48,6 +66,18 @@ class LlmStreamParser:
 
     def __init__(self, options: DoNotUseDirectlyCallManager):
         self.__options = options
+
+    def CreateXYPlotIntent(
+        self, llm_response: str, baml_options: BamlCallOptions = {},
+    ) -> stream_types.XYPlotIntent:
+        __result__ = self.__options.merge_options(baml_options).parse_response(function_name="CreateXYPlotIntent", llm_response=llm_response, mode="stream")
+        return typing.cast(stream_types.XYPlotIntent, __result__)
+
+    def ExtractDatasetFromFreeform(
+        self, llm_response: str, baml_options: BamlCallOptions = {},
+    ) -> stream_types.ExtractedDataset:
+        __result__ = self.__options.merge_options(baml_options).parse_response(function_name="ExtractDatasetFromFreeform", llm_response=llm_response, mode="stream")
+        return typing.cast(stream_types.ExtractedDataset, __result__)
 
     def ReportChapter(
         self, llm_response: str, baml_options: BamlCallOptions = {},
@@ -66,5 +96,11 @@ class LlmStreamParser:
     ) -> str:
         __result__ = self.__options.merge_options(baml_options).parse_response(function_name="ReportIntroduction", llm_response=llm_response, mode="stream")
         return typing.cast(str, __result__)
+
+    def ReviseXYPlotIntent(
+        self, llm_response: str, baml_options: BamlCallOptions = {},
+    ) -> stream_types.XYPlotIntent:
+        __result__ = self.__options.merge_options(baml_options).parse_response(function_name="ReviseXYPlotIntent", llm_response=llm_response, mode="stream")
+        return typing.cast(stream_types.XYPlotIntent, __result__)
 
     

@@ -65,6 +65,50 @@ sections = generate_report(
 markdown = MarkdownRenderer().render(config, sections)
 ```
 
+## Plot generation example
+
+Forelius can generate a safe PNG-backed `Plot` from freeform data and a natural-language plot request. The LLM extracts data and chooses a constrained plot intent; Forelius validates the result and renders with trusted matplotlib code.
+
+```python
+from pathlib import Path
+
+from forelius import generate_plot_from_freeform, initialize
+
+initialize()
+
+plot = generate_plot_from_freeform(
+    """
+    Maak een grafiek van zetting tegen diepte.
+
+    Diepte (m); Zetting (mm)
+    0; 0
+    1,5; 12,5
+    2,0; -
+    """,
+    output_dir=Path("plots"),
+    filename_stem="zetting_diepte",
+)
+
+print(plot.path)
+```
+
+The returned value is a normal `Plot` object with a saved PNG path, so it can be used in `ChapterSpec.elements` like any other figure.
+
+For revision workflows, use the session API from `forelius.plotting`:
+
+```python
+from pathlib import Path
+
+from forelius import initialize
+from forelius.plotting import generate_plot_session
+
+initialize()
+
+session = generate_plot_session("Plot force versus displacement...", Path("plots"))
+session = session.revise("Maak er alleen punten van.")
+final_plot = session.plot
+```
+
 ## Interactive example
 
 For an easy guided flow, use the interactive report prompt. It asks for report settings, chapter titles, pointers, optional figures/tables, and lets you review or revise each generated chapter before rendering Markdown.
@@ -77,10 +121,11 @@ markdown = prompt_for_report()
 print(markdown)
 ```
 
-A manual end-to-end script is included:
+Manual end-to-end scripts are included:
 
 ```bash
 uv run e2e/manual_prompt_for_report.py
+uv run e2e/manual_generate_plot.py
 ```
 
 ## BAML client generation
